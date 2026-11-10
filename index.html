@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpsSphere | Virtual Operations Laboratory</title>
+<style>
+:root{color-scheme:dark;--bg:#0a1324;--panel:#111e32;--panel2:#15253a;--line:#30435a;--ink:#edf5ff;--muted:#a2b4cc;--sky:#5dc5fb;--teal:#49dec1;--amber:#f7bf68;--pink:#f089aa;--danger:#ff7f95;--success:#58d7a9;--shadow:0 14px 40px #03081670;--plot:#101d30;--input:#0c192c;--soft:#20344c;}
+body.light{color-scheme:light;--bg:#f1f5fa;--panel:#fff;--panel2:#f5f8fd;--line:#d1dce9;--ink:#172a42;--muted:#50647d;--sky:#116ea8;--teal:#008c78;--amber:#ae6d0c;--pink:#ae436e;--danger:#b93855;--success:#157954;--shadow:0 9px 25px #26466718;--plot:#f4f8fd;--input:#fff;--soft:#e6eef9;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--sky);outline-offset:2px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px clamp(14px,3vw,38px);border-bottom:1px solid var(--line);background:var(--panel)}header h1{margin:0;font-size:clamp(21px,2.2vw,29px);letter-spacing:-.7px}header p{margin:2px 0 0;color:var(--muted);font-size:12px}.brandline{display:flex;gap:13px;align-items:center}.logo{height:42px;width:42px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(140deg,#5fd6dd,#5080e6);color:#07122b;font-size:22px;font-weight:900}.tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--soft);padding:4px 9px;border-radius:999px;color:var(--muted);font-size:11px;font-weight:700}.righthead{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.shell{max-width:1580px;margin:auto;padding:16px clamp(12px,2vw,30px) 36px}.overview{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin-bottom:14px}.metric{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px 15px;min-width:0}.metric strong{font-size:clamp(20px,2vw,27px);line-height:1.3;letter-spacing:-.7px;display:block}.metric small{color:var(--muted);display:block;font-size:11px}.metric em{font-size:11px;font-style:normal;color:var(--muted)}.gridmain{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(310px,.95fr);gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;min-width:0;overflow:hidden;box-shadow:var(--shadow)}.pad{padding:16px}.titlebar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:9px;margin-bottom:12px}.titlebar h2,.titlebar h3{margin:0;font-size:16px}.titlebar small{color:var(--muted)}.btn{border:1px solid var(--line);color:var(--ink);background:var(--panel2);border-radius:9px;padding:8px 12px;min-height:36px;font-weight:650}.btn:hover{border-color:var(--sky)}.btn.primary{background:#1c82ad;color:#fff;border-color:#269ccf}.btn.danger{color:var(--danger)}.btn.active{background:var(--soft);border-color:var(--sky)}.btn.slim{padding:5px 9px;min-height:30px;font-size:12px}.controls{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.hint{font-size:12px;color:var(--muted)}.stage{width:100%;height:360px;display:block;background:var(--plot);touch-action:none}.stagewrap{border-radius:12px;overflow:hidden;border:1px solid var(--line);position:relative}.stageoverlay{position:absolute;left:10px;bottom:10px;background:var(--panel);opacity:.94;border:1px solid var(--line);border-radius:8px;padding:6px 9px;font-size:11px;color:var(--muted);pointer-events:none}.sceneinfo{border-top:1px solid var(--line);padding:10px 15px;background:var(--panel2);font-size:12px;color:var(--muted)}.stationmap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}.station{padding:10px;border:1px solid var(--line);border-radius:11px;background:var(--panel2);min-width:0;transition:border-color .15s}.station[aria-pressed="true"]{border-color:var(--sky);box-shadow:inset 0 0 0 1px var(--sky)}.station strong{display:block;font-size:13px}.station small{display:block;color:var(--muted);font-size:10px}.station .bar{margin:7px 0 4px;height:7px;border-radius:7px;overflow:hidden;background:var(--soft)}.station .bar i{display:block;height:100%;background:var(--teal)}.row{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap}.notebar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px}.inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{min-width:0}.field label{display:flex;align-items:center;justify-content:space-between;gap:4px;font-size:12px;font-weight:700}.field output{color:var(--sky)}input[type=range]{width:100%;accent-color:var(--sky);cursor:pointer}input[type=number],select{max-width:100%;background:var(--input);color:var(--ink);border:1px solid var(--line);padding:7px 8px;border-radius:8px;min-height:36px}input[type=number]{width:78px}.minirow{display:flex;gap:8px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0;font-size:12px}.minirow:last-child{border:0}.workers{display:flex;align-items:center;gap:4px;flex-wrap:wrap}.worker{display:inline-grid;place-items:center;background:var(--soft);border:1px solid var(--sky);border-radius:7px;width:23px;height:24px;cursor:grab;font-size:14px}.bank{display:flex;gap:7px;flex-wrap:wrap;min-height:37px;padding:7px;border:1px dashed var(--line);border-radius:9px;margin:7px 0}.dropzone{min-height:26px;display:flex;align-items:center;gap:3px;flex-wrap:wrap}.dropzone.over{background:var(--soft);outline:2px dashed var(--sky)}.sectitle{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);font-weight:800;margin:12px 0 7px}.timeline{width:100%;margin:8px 0}.twocol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}.chart{width:100%;height:220px;display:block;border-radius:11px;border:1px solid var(--line);background:var(--plot)}.chart.tall{height:245px}.kpirow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.kpi{background:var(--panel2);border:1px solid var(--line);padding:8px;border-radius:9px}.kpi b{font-size:18px;display:block}.kpi small{color:var(--muted);font-size:10px}.tabbar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}.paneltab{display:none}.paneltab.active{display:block}table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:7px 5px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-size:11px;color:var(--muted)}.scrolltable{overflow:auto;max-height:310px}.quiz{padding:10px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}.quiz p{margin:0 0 8px;font-weight:650}.quiz label{display:block;font-weight:400;margin:6px 0;cursor:pointer}.feedback{margin-top:7px;font-size:12px;color:var(--muted)}.good{color:var(--success)}.bad{color:var(--danger)}.foot{margin-top:14px;padding:13px 16px;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:12px;background:var(--panel)}.progress{height:8px;overflow:hidden;border-radius:20px;background:var(--soft)}.progress>i{display:block;height:100%;background:var(--teal)}svg text{font-family:system-ui, sans-serif}.hidden{display:none!important}
+@media(max-width:1160px){.gridmain{grid-template-columns:minmax(0,1fr)}.stage{height:355px}}@media(max-width:720px){header{align-items:flex-start}.overview{grid-template-columns:repeat(2,minmax(0,1fr))}.overview .metric:last-child{grid-column:span 2}.twocol{grid-template-columns:1fr}.stage{height:300px}.stationmap{grid-template-columns:repeat(2,minmax(0,1fr))}.inputs{grid-template-columns:repeat(2,minmax(0,1fr))}.righthead .tag{display:none}}@media(max-width:440px){header{padding:12px;flex-wrap:wrap}.righthead{width:100%;justify-content:flex-start}.stage{height:260px}.inputs{gap:9px}.kpirow{grid-template-columns:repeat(2,minmax(0,1fr))}.shell{padding:10px 9px 30px}.pad{padding:12px}.metric{padding:10px}.btn{padding:7px 9px;font-size:12px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brandline"><div class="logo" aria-hidden="true">◈</div><div><h1>OpsSphere <span style="color:var(--sky)">3D</span></h1><p>Virtual operations floor · Discrete-event learning studio</p></div></div>
+  <div class="righthead"><span class="tag">● LOCAL SIMULATION</span><button class="btn" id="viewToggle" aria-pressed="false">▦ 2D view</button><button class="btn" id="themeToggle" aria-pressed="false">☀ Light mode</button></div>
+</header>
+<main class="shell">
+<div class="overview" aria-live="polite">
+ <div class="metric"><small>Nominal line capacity</small><strong id="mCapacity">40 /h</strong><em id="mBottleneck">Prepare is limiting</em></div>
+ <div class="metric"><small>Realized throughput, so far</small><strong id="mThroughput">0 /h</strong><em>Shipped ÷ elapsed simulated hours</em></div>
+ <div class="metric"><small>Completed orders</small><strong id="mShipped">0</strong><em id="mArrived">0 arrivals</em></div>
+ <div class="metric"><small>Work in progress</small><strong id="mWip">0</strong><em>Waiting + being processed</em></div>
+ <div class="metric"><small>Mean waiting time</small><strong id="mWait">—</strong><em>Completed orders only</em></div>
+</div>
+<div class="gridmain">
+<section class="card pad" aria-label="Virtual floor and process map">
+ <div class="titlebar"><div><h2>Virtual operations floor</h2><small>Orbit: drag · Zoom: wheel or +/- · Select a workstation</small></div><div class="controls"><button class="btn slim" id="turnLeft" aria-label="Rotate view left">↶</button><button class="btn slim" id="turnRight" aria-label="Rotate view right">↷</button><button class="btn slim" id="zoomOut" aria-label="Zoom out">−</button><button class="btn slim" id="zoomIn" aria-label="Zoom in">+</button></div></div>
+ <div class="stagewrap"><canvas id="stage" class="stage" role="img" tabindex="0" aria-label="Orbitable diagram of four workstations with visible waiting and processing orders. Use the 2D station buttons below for full keyboard access."></canvas><div class="stageoverlay" id="stageOverlay">Click a station or use the 2D map below</div></div>
+ <div class="sceneinfo" id="sceneInfo" aria-live="polite">Select a workstation to inspect its queue, workers, utilization, and capacity.</div>
+ <div class="titlebar" style="margin:13px 0 0"><h3>Accessible 2D process map</h3><small>Receive → Prepare → Quality → Dispatch</small></div>
+ <div id="stationMap" class="stationmap" role="group" aria-label="Select any workstation"></div>
+ <div class="notebar"><span><i class="dot" style="background:var(--teal)"></i>Processing</span><span><i class="dot" style="background:var(--amber)"></i>Waiting</span><span><i class="dot" style="background:var(--danger)"></i>Down</span><span>Each animated block represents a conceptual order or small group, not a physical conveyor.</span></div>
+</section>
+<aside class="card pad" aria-label="Experiment controls">
+ <div class="titlebar"><h2>Experiment controls</h2><div class="controls"><button class="btn slim" id="undoConfig">↶ Undo edit</button><button class="btn slim" id="resetAll">↺ Reset all</button></div></div>
+ <div class="sectitle">System inputs</div>
+ <div class="inputs">
+  <div class="field"><label for="arrival">Arrivals <output id="arrivalOut">55/h</output></label><input id="arrival" type="range" min="10" max="110" step="5" value="55"></div>
+  <div class="field"><label for="batch">Arrival batch <output id="batchOut">2 orders</output></label><input id="batch" type="range" min="1" max="8" step="1" value="2"></div>
+  <div class="field"><label for="variance">Service variation <output id="varianceOut">±20%</output></label><input id="variance" type="range" min="0" max="50" step="5" value="20"></div>
+  <div class="field"><label for="downtime">Downtime risk <output id="downtimeOut">3%</output></label><input id="downtime" type="range" min="0" max="20" step="1" value="3"></div>
+  <div class="field"><label for="repair">Repair duration <output id="repairOut">8 min</output></label><input id="repair" type="range" min="2" max="30" step="1" value="8"></div>
+  <div class="field"><label for="seed">Random seed <output id="seedOut">42</output></label><input id="seed" type="number" min="1" max="99999" step="1" value="42" aria-describedby="seedNote"></div>
+ </div>
+ <div class="hint" id="seedNote" style="margin-top:7px">A fixed seed makes scenarios reproducible. Arrivals and service vary; results are synthetic.</div>
+ <div class="sectitle">Base service capacity · per worker</div><div id="capacityEditors"></div>
+ <div class="sectitle">Resource staffing · budget $240</div>
+ <div class="row"><span class="hint">One worker per stage is included. Three additional workers are available at $80 each.</span><strong id="spent">$0 / $240</strong></div>
+ <div class="bank" id="workerBank" aria-label="Unallocated worker tokens" tabindex="0"></div>
+ <div id="staffEditors"></div>
+ <div class="progress"><i id="budgetBar" style="width:0"></i></div>
+ <div class="hint" id="workerHint" role="status" style="margin-top:7px">Drag a worker to a workstation or use the + and − controls. Click a token, then select a station, as a touch-friendly alternative.</div>
+ <div class="sectitle">Time controls · 8-hour horizon</div>
+ <div class="controls"><button class="btn primary" id="playBtn">▶ Play</button><button class="btn" id="stepBack">◀ 1 min</button><button class="btn" id="stepNext">1 min ▶</button><button class="btn" id="replayBtn">↺ Replay</button><select id="speed" aria-label="Playback speed"><option value="4">4 sim min/s</option><option value="15" selected>15 sim min/s</option><option value="45">45 sim min/s</option><option value="120">120 sim min/s</option></select></div>
+ <input class="timeline" id="scrub" type="range" min="0" max="480" step="1" value="0" aria-label="Simulation timeline in minutes"><div class="row"><b id="clock">Day shift · 00:00 / 08:00</b><span class="hint" id="playState">Ready</span></div>
+ <div class="sectitle">Strategies</div><div class="controls"><button class="btn slim" id="saveReference">Save reference A</button><button class="btn slim" id="compareBtn">Compare A ↔ B</button><button class="btn slim" id="exportBtn">⇩ Export CSV</button><button class="btn slim" id="exportJson">⇩ Session JSON</button></div>
+</aside>
+</div>
+<div class="twocol">
+ <section class="card pad"><div class="titlebar"><h2>Live process telemetry</h2><small>Arrival, completions and WIP (orders)</small></div><svg id="trendChart" class="chart tall" viewBox="0 0 720 255" role="img" aria-label="Time graph for cumulative arrivals, completed orders, and work in progress"></svg><div class="notebar"><span><i class="dot" style="background:var(--sky)"></i>Arrivals</span><span><i class="dot" style="background:var(--teal)"></i>Shipped</span><span><i class="dot" style="background:var(--amber)"></i>WIP</span><span>Vertical marker = selected time</span></div></section>
+ <section class="card pad"><div class="titlebar"><h2>Queue, utilization & bottleneck</h2><small id="currentTimeText">At minute 0</small></div><div id="queueBars"></div><div class="kpirow" style="margin-top:12px"><div class="kpi"><small>Mean lead time</small><b id="leadKpi">—</b></div><div class="kpi"><small>Downtime events</small><b id="downKpi">0</b></div><div class="kpi"><small>Budget remaining</small><b id="remainKpi">$240</b></div></div><div class="hint" style="margin-top:9px">Utilization uses actual busy worker-minutes ÷ available worker-minutes; downtime is counted separately.</div></section>
+</div>
+<div class="twocol">
+ <section class="card pad"><div class="titlebar"><h2>Scenario comparison & bottleneck mission</h2><span class="tag" id="missionBadge">0 / 3 missions</span></div><div id="comparePanel"></div><div class="sectitle">Guided missions</div><div id="missions"></div></section>
+ <section class="card pad"><div class="titlebar"><h2>Learning checkpoint</h2><span class="tag" id="quizScore">0 / 3</span></div><div id="quizPanel"></div></section>
+</div>
+<section class="card pad" style="margin-top:14px"><div class="titlebar"><h2>Discrete-event timeline & rule trace</h2><div class="controls"><button class="btn slim" id="tabEvents">Event stream</button><button class="btn slim" id="tabAssumptions">Model assumptions & tests</button><button class="btn slim" id="runTests">Run conservation tests</button></div></div>
+ <div id="eventTab" class="paneltab active"><div class="scrolltable"><table><thead><tr><th>Time</th><th>Event</th><th>Stage</th><th>Business rule / effect</th></tr></thead><tbody id="eventBody"></tbody></table></div><p class="hint">This is a simulated event log, not records from a real workplace. Showing the most recent events up to the selected time.</p></div>
+ <div id="assumptionTab" class="paneltab"><p>Four FIFO workstations in series. Arrivals come in fixed-size batches at exponentially distributed intervals; the specified arrival rate is an <b>expected</b> orders/hour, not a guaranteed count. Individual service times equal 60 ÷ station capacity (minutes) multiplied by a bounded triangular variation factor. Each staffed workstation has independent parallel workers. A reproducible per-order test may trigger one downtime period before service at a station; no work is processed during repair.</p><p>Orders cannot skip stages, queues have unlimited buffer space, and transfer time is zero. Once started, service is non-preemptive. There is no rework, scrap, priority dispatch, shift break, setup delay, inventory constraint or physical travel limit. Batches determine arrival clustering, not processing lot size. The simulated day is 480 minutes; unfinished orders remain WIP.</p><p><b>Capacity</b> = minimum of nominal worker rate × workers across the four stations. This is a steady-state planning benchmark, not a strict finite-window bound under variable service times. <b>Realized throughput</b> = actually completed orders ÷ elapsed time. Busy utilization includes true processing minutes only; worker downtime is excluded from the busy numerator. Waiting and lead time use only orders completed at the selected time. Random service variation and limited warm-up make small-sample outcomes noisy. These outputs are synthetic demonstrations, not operational forecasts.</p><div id="testResults" class="hint">Use “Run conservation tests” to inspect automated invariants and edge cases.</div></div>
+</section>
+<div class="foot"><b>Educational, fully local model.</b> This browser file performs no network requests and stores no user credentials. Dragging workers changes staffing in the simulation; it does not change a real facility. A fixed random seed is supplied for repeatability, and no performance figures should be interpreted as measurements from a real operation.</div>
+</main>
+<script>
+'use strict';
+// OpsSphere: A small, reproducible discrete-event teaching model. All values use minutes and orders.
+const NAMES=['Receive','Prepare','Quality','Dispatch'];
+const COLORS=['#5ac6fa','#f6be68','#c79bf6','#4adac0'];
+const DEFAULT=()=>({caps:[60,40,50,55],workers:[1,1,1,1],arrival:55,batch:2,variance:20,downtime:3,repair:8,seed:42});
+let cfg=DEFAULT(), session=null, baseline=null, minute=0, playing=false, raf=0, prevStamp=0;
+let selectedStation=1, selectedToken=false, layout2d=false, orbit={yaw:-0.65,pitch:0.61,zoom:1};
+let quizAnswers={}, missionDone=[false,false,false], confHistory=[], compareVisible=true;
+const $=id=>document.getElementById(id), clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const fmt=(x,d=1)=>Number.isFinite(x)?x.toFixed(d):'—';
+const deep=o=>JSON.parse(JSON.stringify(o));
+const totalWorkers=c=>c.workers.reduce((a,b)=>a+b,0);
+const spent=c=>(totalWorkers(c)-4)*80;
+const capCeiling=c=>Math.min(...c.caps.map((v,i)=>v*c.workers[i]));
+const bottlenecks=c=>{const min=capCeiling(c);return NAMES.filter((_,i)=>c.caps[i]*c.workers[i]===min)};
+function randomGen(seed){let z=seed>>>0;return ()=>{z=(Math.imul(1664525,z)+1013904223)>>>0;return z/4294967296}};
+function stableRand(seed,id,s,which){let x=(seed^Math.imul(id+1,2654435761)^Math.imul(s+3,2246822519)^Math.imul(which+29,3266489917))>>>0;x^=x>>>16;x=Math.imul(x,2246822507);x^=x>>>13;x=Math.imul(x,3266489909);x^=x>>>16;return (x>>>0)/4294967296;}
+// Priority heap: consistent ordering for events occurring at identical times.
+class Heap{constructor(){this.a=[]} push(e){let a=this.a;a.push(e);let i=a.length-1;while(i>0){let p=(i-1)>>1;if(a[p].t<=e.t)break;a[i]=a[p];i=p}a[i]=e}pop(){let a=this.a,ret=a[0],last=a.pop();if(a.length){let i=0;while(true){let ch=i*2+1;if(ch>=a.length)break;if(ch+1<a.length&&a[ch+1].t<a[ch].t)ch++;if(a[ch].t>=last.t)break;a[i]=a[ch];i=ch}a[i]=last}return ret}peek(){return this.a[0]}get length(){return this.a.length}}
+function simulate(c){
+ const H=480, events=new Heap(), logs=[], frames=[], rng=randomGen(c.seed), stations=NAMES.map((_,s)=>({q:[], workers:Array.from({length:c.workers[s]},()=>({status:'idle',start:0})),busyMinutes:0,processed:0,downCount:0}));
+ const orders=[], metrics={arrived:0,shipped:0,wait:0,lead:0,failures:0};
+ const log=(t,type,s,detail)=>logs.push({t,type,s,detail});
+ let seq=0;
+ const push=(t,type,opts={})=>events.push({t,type,seq:seq++,...opts});
+ // Independent batch-arrival random stream: holding seed fixed preserves identical demand across staffing strategies.
+ let at=0,batchID=0;
+ while(at<H){let u=Math.max(1e-12,rng());at+=-Math.log(u)*60*c.batch/c.arrival;if(at>H)break;push(at,'arrival',{batchId:++batchID})}
+ function release(s,t){let st=stations[s];
+  while(st.q.length){let wi=st.workers.findIndex(w=>w.status==='idle');if(wi<0)break;
+   let w=st.workers[wi],job=st.q[0];
+   // One possible interruption before this order starts at this stage. The order remains queued during the outage.
+   const hazard=stableRand(c.seed,job.id,s,7)<c.downtime/100;
+   if(hazard&&!job.interrupted[s]){job.interrupted[s]=true;w.status='down';st.downCount++;metrics.failures++;push(t+c.repair,'repair',{s,wi});log(t,'DOWNTIME',s,'Worker unavailable for '+c.repair+' min; order waits');continue}
+   st.q.shift();job.wait+=t-job.queuedAt;w.status='busy';w.start=t;
+   const variation=(stableRand(c.seed,job.id,s,11)+stableRand(c.seed,job.id,s,12)-1)*(c.variance/100);
+   const service=(60/c.caps[s])*(1+variation);
+   push(t+service,'finish',{s,wi,job});
+   if(st.processed<5||job.id%20===0)log(t,'START',s,'Order #'+job.id+' begins; nominal service '+fmt(60/c.caps[s],2)+' min');
+  }
+ }
+ function process(e){let t=e.t;
+  if(e.type==='arrival'){
+   metrics.arrived+=c.batch;
+   for(let k=0;k<c.batch;k++){let id=orders.length+1,j={id,arrival:t,queuedAt:t,wait:0,interrupted:[false,false,false,false]};orders.push(j);stations[0].q.push(j)}
+   log(t,'ARRIVAL',0,c.batch+' order(s) accepted in a batch; queue FIFO');release(0,t);
+  }else if(e.type==='finish'){
+   let {s,wi,job}=e,w=stations[s].workers[wi];
+   if(w.status!=='busy')throw Error('Finish event without a busy worker');
+   stations[s].busyMinutes+=t-w.start;w.status='idle';stations[s].processed++;
+   if(s===3){metrics.shipped++;metrics.wait+=job.wait;metrics.lead+=t-job.arrival;log(t,'DISPATCH',s,'Order #'+job.id+' completed and leaves the system')}
+   else{job.queuedAt=t;stations[s+1].q.push(job);if(job.id%20===0||stations[s].processed<=3)log(t,'TRANSFER',s,'Order #'+job.id+' to '+NAMES[s+1]);release(s+1,t)}
+   release(s,t);
+  }else if(e.type==='repair'){
+   let w=stations[e.s].workers[e.wi];if(w.status!=='down')throw Error('Repair event without downtime');w.status='idle';log(t,'REPAIRED',e.s,'Worker returned to service; resume FIFO');release(e.s,t);
+  }
+ }
+ let maxWip=0,sumWip=0,sumQueue=0,violations=0;
+ for(let m=0;m<=H;m++){
+  while(events.length&&events.peek().t<=m+1e-8)process(events.pop());
+  let queues=stations.map(x=>x.q.length),busy=stations.map(x=>x.workers.filter(y=>y.status==='busy').length),down=stations.map(x=>x.workers.filter(y=>y.status==='down').length);
+  let wip=metrics.arrived-metrics.shipped, physical=queues.reduce((a,b)=>a+b,0)+busy.reduce((a,b)=>a+b,0);
+  if(wip!==physical||metrics.shipped>metrics.arrived||wip<0)violations++;
+  let util=stations.map((st,s)=>{let ongoing=st.workers.reduce((acc,w)=>acc+(w.status==='busy'?m-w.start:0),0);return m?clamp((st.busyMinutes+ongoing)/(m*c.workers[s]),0,1):0});
+  let snap={t:m,arrived:metrics.arrived,shipped:metrics.shipped,wip,queues,busy,down,util,processed:stations.map(x=>x.processed),avgWait:metrics.shipped?metrics.wait/metrics.shipped:null,avgLead:metrics.shipped?metrics.lead/metrics.shipped:null,failures:metrics.failures};
+  frames.push(snap);maxWip=Math.max(maxWip,wip);sumWip+=wip;sumQueue+=queues.reduce((a,b)=>a+b,0);
+ }
+ const end=frames[H],summary={...end,capacity:capCeiling(c),throughput:end.shipped/8,avgWip:sumWip/(H+1),avgQueued:sumQueue/(H+1),maxWip,conservationErrors:violations};
+ return {frames,logs,summary,cfg:deep(c),orders:orders.length};
+}
+function snapshot(){return session.frames[Math.max(0,Math.min(480,Math.floor(minute)))];}
+function pushUndo(){confHistory.push(deep(cfg));if(confHistory.length>30)confHistory.shift()}
+function changeCfg(fn){pause();pushUndo();fn();rebuild(false)}
+function rebuild(resetTime=false){session=simulate(cfg);if(resetTime)minute=0;minute=clamp(Math.round(minute),0,480);setInputs();renderWorkers();renderAll()}
+const initialBaseline=simulate(DEFAULT());
+baseline={cfg:deep(DEFAULT()),summary:deep(initialBaseline.summary)};
+function setInputs(){for(const k of ['arrival','batch','variance','downtime','repair','seed']){$(k).value=cfg[k]};for(const k of ['arrival','batch','variance','downtime','repair','seed'])$(k+'Out').textContent=({'arrival':cfg.arrival+'/h','batch':cfg.batch+' orders','variance':'±'+cfg.variance+'%','downtime':cfg.downtime+'%','repair':cfg.repair+' min','seed':cfg.seed})[k]}
+function makeEditors(){let cap=$('capacityEditors'),staff=$('staffEditors');cap.innerHTML='';staff.innerHTML='';NAMES.forEach((name,i)=>{
+  const r=document.createElement('div');r.className='minirow';r.innerHTML='<label for="cap'+i+'">'+name+'</label><div class="row"><input type="number" id="cap'+i+'" min="5" max="180" step="5" aria-label="'+name+' capacity per worker in orders per hour"><span class="hint">orders/h</span></div>';
+  cap.append(r);r.querySelector('input').addEventListener('change',e=>{const v=Number(e.target.value);if(!Number.isFinite(v)||v<5||v>180){e.target.value=cfg.caps[i];say('Capacity must be between 5 and 180 orders per hour.');return}changeCfg(()=>cfg.caps[i]=v)})
+  const w=document.createElement('div');w.className='minirow';w.innerHTML='<span><b>'+name+'</b><br><small class="hint" id="capEff'+i+'"></small></span><div class="workers"><button class="btn slim" id="minus'+i+'" aria-label="Remove an extra worker from '+name+'">−</button><div class="dropzone" id="zone'+i+'" data-stage="'+i+'" aria-label="'+name+' worker drop area"></div><button class="btn slim" id="plus'+i+'" aria-label="Add a worker to '+name+'">+</button></div>';staff.append(w);
+  $('plus'+i).addEventListener('click',()=>modifyWorkers(i,1));$('minus'+i).addEventListener('click',()=>modifyWorkers(i,-1));
+  $('zone'+i).addEventListener('dragover',e=>{e.preventDefault();e.currentTarget.classList.add('over')});$('zone'+i).addEventListener('dragleave',e=>e.currentTarget.classList.remove('over'));
+  $('zone'+i).addEventListener('drop',e=>{e.preventDefault();e.currentTarget.classList.remove('over');let v=e.dataTransfer.getData('text/plain');transferWorker(v,'s'+i)});
+  $('zone'+i).addEventListener('click',()=>{if(selectedToken){modifyWorkers(i,1);selectedToken=false;renderWorkers()}})
+ });
+ $('workerBank').addEventListener('dragover',e=>e.preventDefault());$('workerBank').addEventListener('drop',e=>{e.preventDefault();transferWorker(e.dataTransfer.getData('text/plain'),'bank')});
+ $('workerBank').addEventListener('click',()=>{selectedToken=!selectedToken;renderWorkers()});
+}
+function modifyWorkers(i,delta){if(delta>0&&totalWorkers(cfg)>=7){say('All three extra workers are already assigned. Reallocate an existing token.');return}if(delta<0&&cfg.workers[i]<=1){say('Each workstation needs at least one worker.');return}if(delta>0&&cfg.workers[i]>=4){say('Four workers per station is the maximum.');return}changeCfg(()=>cfg.workers[i]+=delta);say('Staffing updated. Replay or compare outcomes at the same random seed.')}
+function transferWorker(source,dest){if(!source)return;if(source==='bank'&&dest==='bank')return;let src=source.startsWith('s')?Number(source.slice(1)):-1, dst=dest.startsWith('s')?Number(dest.slice(1)):-1;if(src===dst)return;if(src===-1&&totalWorkers(cfg)>=7)return;if(src>=0&&cfg.workers[src]<=1)return;if(dst>=0&&cfg.workers[dst]>=4)return;changeCfg(()=>{if(src>=0)cfg.workers[src]--;if(dst>=0)cfg.workers[dst]++});say('Worker transferred between workstation and resource bank.')}
+function workerButton(source,label){const b=document.createElement('button');b.className='worker';b.draggable=true;b.textContent='♟';b.title=label;b.setAttribute('aria-label',label);b.addEventListener('dragstart',e=>e.dataTransfer.setData('text/plain',source));b.addEventListener('click',e=>{e.stopPropagation();selectedToken=(source==='bank');say(source==='bank'?'Resource selected. Click a workstation area or its + button.':'Use − to return a worker, or drag this token to another workstation.')});return b}
+function renderWorkers(){let bank=$('workerBank');bank.innerHTML='';for(let k=totalWorkers(cfg);k<7;k++)bank.append(workerButton('bank','Unassigned worker token'));if(totalWorkers(cfg)===7)bank.textContent='No unused tokens';NAMES.forEach((n,i)=>{let z=$('zone'+i);z.innerHTML='';for(let j=0;j<cfg.workers[i];j++){let b=workerButton('s'+i,n+' worker '+(j+1));if(j===0){b.draggable=false;b.title='Base worker cannot be removed'}z.append(b)}$('cap'+i).value=cfg.caps[i];$('capEff'+i).textContent='Combined '+(cfg.caps[i]*cfg.workers[i])+' orders/h';$('plus'+i).disabled=totalWorkers(cfg)>=7;$('minus'+i).disabled=cfg.workers[i]<=1});$('spent').textContent='$'+spent(cfg)+' / $240';$('remainKpi').textContent='$'+(240-spent(cfg));$('budgetBar').style.width=(spent(cfg)/240*100)+'%'}
+function stationData(s){let f=snapshot(),w=cfg.workers[s];return {name:NAMES[s],queue:f.queues[s],busy:f.busy[s],down:f.down[s],util:f.util[s]*100,capacity:cfg.caps[s]*w,staff:w}}
+function selectStation(i){selectedStation=i;renderAll()}
+function renderMap(){let map=$('stationMap');map.innerHTML='';NAMES.forEach((n,i)=>{let d=stationData(i),b=document.createElement('button');b.className='station';b.type='button';b.setAttribute('aria-pressed',String(selectedStation===i));b.innerHTML='<div class="row"><strong>'+n+'</strong><span style="color:'+COLORS[i]+'">0'+(i+1)+'</span></div><small>Queue '+d.queue+' · Active '+d.busy+'/'+d.staff+'</small><div class="bar"><i style="width:'+Math.min(100,d.util)+'%;background:'+COLORS[i]+'"></i></div><small>'+d.capacity+'/h ceiling · '+fmt(d.util,0)+'% utilized</small>';b.onclick=()=>selectStation(i);map.append(b)});let d=stationData(selectedStation);$('sceneInfo').textContent=d.name+': '+d.queue+' waiting, '+d.busy+' processing, '+d.down+' down; '+d.staff+' worker(s), '+fmt(d.util,1)+'% busy utilization. Nominal station capacity '+d.capacity+' orders/h.'}
+function renderMetrics(){let f=snapshot();$('mCapacity').textContent=fmt(capCeiling(cfg),0)+' /h';$('mBottleneck').textContent=bottlenecks(cfg).join(' + ')+' limits capacity';$('mThroughput').textContent=minute?fmt(f.shipped/(minute/60),1)+' /h':'0 /h';$('mShipped').textContent=f.shipped;$('mArrived').textContent=f.arrived+' arrivals';$('mWip').textContent=f.wip;$('mWait').textContent=f.avgWait==null?'—':fmt(f.avgWait,1)+' min';$('leadKpi').textContent=f.avgLead==null?'—':fmt(f.avgLead,1)+' min';$('downKpi').textContent=f.failures;$('currentTimeText').textContent='At minute '+minute;$('clock').textContent='Day shift · '+String(Math.floor(minute/60)).padStart(2,'0')+':'+String(Math.floor(minute)%60).padStart(2,'0')+' / 08:00';$('scrub').value=Math.floor(minute)}
+function renderQueueBars(){let f=snapshot(),host=$('queueBars');host.innerHTML='';NAMES.forEach((n,i)=>{let d=stationData(i),el=document.createElement('div');el.style.marginBottom='10px';el.innerHTML='<div class="row" style="font-size:12px"><b>'+n+'</b><span>Queue '+d.queue+' · Active '+d.busy+'/'+d.staff+' · '+fmt(d.util,0)+'% busy</span></div><div class="progress" style="height:12px;margin-top:6px"><i style="width:'+clamp(d.queue/Math.max(1,Math.max(...f.queues),12)*100,0,100)+'%;background:'+COLORS[i]+'"></i></div>';host.append(el)})}
+const svgEl=(tag,attrs={},text)=>{let e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(let k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e};
+function renderChart(){let svg=$('trendChart'),F=session.frames;svg.innerHTML='';const l=48,r=690,t=16,b=214,w=r-l,h=b-t;let max=Math.max(10,...F.map(f=>f.arrived));let X=x=>l+x/480*w,Y=v=>b-v/max*h;
+ for(let k=0;k<=4;k++){let y=b-k/4*h;svg.append(svgEl('line',{x1:l,y1:y,x2:r,y2:y,stroke:'var(--line)','stroke-dasharray':'3 5'}),svgEl('text',{x:42,y:y+4,fill:'var(--muted)','font-size':11,'text-anchor':'end'},String(Math.round(max*k/4))))}
+ for(let k=0;k<=8;k++){let x=l+k/8*w;svg.append(svgEl('text',{x,y:235,fill:'var(--muted)','font-size':11,'text-anchor':'middle'},k+'h'))}
+ for(let [key,col] of [['arrived','#56bfff'],['shipped','#3dd8b7'],['wip','#f4b859']]){let d=F.filter((_,i)=>i%3===0||i===480).map((f,i)=>(i?'L':'M')+X(f.t).toFixed(2)+','+Y(f[key]).toFixed(2)).join(' ');svg.append(svgEl('path',{d,fill:'none',stroke:col,'stroke-width':key==='wip'?2.3:2.6,'stroke-linejoin':'round'}))}
+ let xx=X(minute);svg.append(svgEl('line',{x1:xx,y1:t,x2:xx,y2:b,stroke:'var(--ink)','stroke-width':1.4,'stroke-dasharray':'5 4'}));let f=snapshot();for(let [key,col] of [['arrived','#56bfff'],['shipped','#3dd8b7'],['wip','#f4b859']])svg.append(svgEl('circle',{cx:xx,cy:Y(f[key]),r:4.2,fill:col,stroke:'var(--plot)','stroke-width':2}));
+}
+function renderCompare(){let a=baseline.summary,b=session.summary,host=$('comparePanel');const fields=[['Capacity /h','capacity'],['Completed orders','shipped'],['Avg WIP','avgWip'],['Avg wait (min)','avgWait'],['Realized /h','throughput']];let str='<div class="hint" style="margin-bottom:7px">Matched 8-hour simulations; reference A and current B use the configured random seed. Changing the seed changes the demand sample.</div><table><thead><tr><th>KPI</th><th>Reference A</th><th>Current B</th></tr></thead><tbody>';fields.forEach(([label,key])=>{let av=a[key],bv=b[key];str+='<tr><td>'+label+'</td><td>'+fmt(av,1)+'</td><td>'+fmt(bv,1)+'</td></tr>'});str+='</tbody></table>';host.innerHTML=compareVisible?str:'<p class="hint">Comparison hidden. Select Compare A ↔ B to view two scenarios.</p>';
+}
+const MISSIONS=[['Remove the Prepare bottleneck','Allocate staffing so Prepare is no longer limiting and capacity reaches at least 50 orders/h.'],['Improve service with limited resources','Increase completed orders by at least 5 and lower mean waiting time versus the saved 8-hour reference.'],['Prevent downtime','Reduce the downtime probability to 0%, and verify the conservation test passes.']];
+function renderMissions(){let host=$('missions');host.innerHTML='';MISSIONS.forEach((m,i)=>{let row=document.createElement('div');row.className='quiz';let done=missionDone[i];row.innerHTML='<div class="row"><b>Mission '+(i+1)+' · '+m[0]+'</b><span class="tag">'+(done?'Completed':'Open')+'</span></div><p class="hint" style="font-weight:400;margin-top:7px">'+m[1]+'</p><div class="controls"><button class="btn slim check">Check mission</button><button class="btn slim help">Hint</button></div><div class="feedback" role="status"></div>';let feedback=row.querySelector('.feedback');row.querySelector('.check').onclick=()=>{let b=session.summary,a=baseline.summary,ok=i===0?(capCeiling(cfg)>=50&&!bottlenecks(cfg).includes('Prepare')):i===1?(b.shipped>=a.shipped+5&&b.avgWait!=null&&a.avgWait!=null&&b.avgWait<a.avgWait):cfg.downtime===0&&b.conservationErrors===0;if(ok){missionDone[i]=true;row.querySelector('.tag').textContent='Completed';feedback.className='feedback good';feedback.textContent='Achieved. This result comes from the full 8-hour simulated scenario.'}else{feedback.className='feedback bad';feedback.textContent=i===0?'Prepare still limits capacity, or the system ceiling is below 50/h.':i===1?'Not yet: compare completed orders and waiting time at the end of the shift with reference A.':'Not yet: downtime risk must be zero, and flow conservation must pass.'}updateMissionBadge()};row.querySelector('.help').onclick=()=>feedback.textContent=['Try allocating one spare worker to Prepare. Another workstation may then become limiting.','Place workers at the actual bottleneck, not necessarily the busiest-looking station. Keep the random seed fixed.','Set downtime risk to 0% and run the invariant checks below.'][i];host.append(row)})}
+function updateMissionBadge(){$('missionBadge').textContent=missionDone.filter(Boolean).length+' / 3 missions'}
+const QUIZZES=[{q:'With capacities 60, 40, 50 and 55 orders/hour and one worker per station, which station limits maximum steady-state capacity?',opts:['Receive','Prepare','Quality'],answer:1,why:'Prepare has the smallest capacity at 40 orders/hour. A serial line cannot sustain more than its limiting stage.'},{q:'Can a line with a nominal capacity of 60 orders/hour be guaranteed to complete 60 orders in the first simulated hour?',opts:['Yes, capacity always equals actual throughput','No, arrivals, waiting, downtime and startup affect actual completions','Yes, if the animation runs at 120× speed'],answer:1,why:'Theoretical capacity is an upper-rate ceiling under ideal sustained availability, while throughput is measured from actual completions per elapsed hour.'},{q:'If Prepare remains at 40 orders/hour, what happens to the system nominal capacity when only Receive is expanded?',opts:['It stays 40 orders/hour','It becomes the new Receive rate','It always doubles'],answer:0,why:'Increasing a non-bottleneck stage does not raise the smallest stage capacity. Improve Prepare first.'}];
+function renderQuiz(){let host=$('quizPanel');host.innerHTML='';QUIZZES.forEach((q,i)=>{let box=document.createElement('div');box.className='quiz';box.innerHTML='<p>Q'+(i+1)+'. '+q.q+'</p><div class="opts"></div><div class="feedback" role="status"></div>';q.opts.forEach((txt,j)=>{let label=document.createElement('label'),id='quiz'+i+'_'+j;label.innerHTML='<input name="quiz'+i+'" type="radio" value="'+j+'" '+(quizAnswers[i]===j?'checked':'')+' id="'+id+'"> '+txt;box.querySelector('.opts').append(label);label.querySelector('input').addEventListener('change',()=>{quizAnswers[i]=j;renderQuiz()})});if(quizAnswers[i]!=null){let ok=quizAnswers[i]===q.answer;box.querySelector('.feedback').className='feedback '+(ok?'good':'bad');box.querySelector('.feedback').textContent=(ok?'✓ ':'✕ ')+q.why}host.append(box)});$('quizScore').textContent=QUIZZES.filter((q,i)=>quizAnswers[i]===q.answer).length+' / 3'}
+function renderLogs(){let arr=session.logs.filter(e=>e.t<=minute).slice(-16).reverse(),body=$('eventBody');body.innerHTML='';if(!arr.length){body.innerHTML='<tr><td colspan="4">No events yet. Advance the timeline to observe arrivals, processing, and dispatch.</td></tr>';return}arr.forEach(e=>{let tr=document.createElement('tr');tr.innerHTML='<td>'+fmt(e.t,2)+'m</td><td>'+e.type+'</td><td>'+NAMES[e.s]+'</td><td>'+e.detail+'</td>';body.append(tr)})}
+function renderAll(){renderMetrics();renderMap();renderQueueBars();renderChart();renderCompare();renderLogs();drawFloor()}
+function say(msg){$('workerHint').textContent=msg}
+function pause(){playing=false;cancelAnimationFrame(raf);$('playBtn').textContent='▶ Play';$('playState').textContent='Paused'}
+function tick(ts){if(!playing)return;if(!prevStamp)prevStamp=ts;let dt=Math.min(.15,(ts-prevStamp)/1000);prevStamp=ts;minute=Math.min(480,minute+dt*Number($('speed').value));let m=Math.floor(minute);if(m!==tick.last){tick.last=m;renderAll()}if(minute>=480){minute=480;pause();renderAll();return}raf=requestAnimationFrame(tick)}
+function play(){if(playing){pause();return}if(minute>=480)minute=0;playing=true;prevStamp=0;tick.last=-1;$('playBtn').textContent='Ⅱ Pause';$('playState').textContent='Playing';raf=requestAnimationFrame(tick)}
+function setMinute(v){pause();minute=clamp(Math.round(v),0,480);renderAll()}
+// Small dependency-free 3D renderer (fixed perspective projection, hidden-face sorting) with a complete 2D fallback.
+const canvas=$('stage'),ctx=canvas.getContext('2d');let hotspots=[];
+function palette(){let light=document.body.classList.contains('light');return {floor:light?'#dee9f5':'#152b43',grid:light?'#c6d8e9':'#274760',wall:light?'#f3f8ff':'#10243b',ink:light?'#18304e':'#eaf6ff',shade:light?'#a9bed2':'#2a4861',soft:light?'#eef5fb':'#203d52'}}
+function fitCanvas(){let r=canvas.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);if(canvas.width!==Math.round(r.width*d)||canvas.height!==Math.round(r.height*d)){canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d)}ctx.setTransform(d,0,0,d,0,0);return {w:r.width,h:r.height}}
+function project(x,y,z,w,h){let a=orbit.yaw,p=orbit.pitch,xx=x*Math.cos(a)-y*Math.sin(a),zz=x*Math.sin(a)+y*Math.cos(a),sc=Math.min(1,w/670);return [w/2+(xx*orbit.zoom)*45*sc,h*.59+(zz*Math.sin(p)-z*Math.cos(p))*orbit.zoom*35*sc]}
+function polygon(vertices,color,stroke){ctx.beginPath();vertices.forEach((v,i)=>i?ctx.lineTo(v[0],v[1]):ctx.moveTo(v[0],v[1]));ctx.closePath();ctx.fillStyle=color;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=.8;ctx.stroke()}}
+function cuboid(x,y,z,dx,dy,dz,colors,w,h){let P=(a,b,c)=>project(a,b,c,w,h),p000=P(x,y,z),p100=P(x+dx,y,z),p110=P(x+dx,y+dy,z),p010=P(x,y+dy,z),p001=P(x,y,z+dz),p101=P(x+dx,y,z+dz),p111=P(x+dx,y+dy,z+dz),p011=P(x,y+dy,z+dz);polygon([p000,p100,p101,p001],colors[1]);polygon([p100,p110,p111,p101],colors[2]);polygon([p001,p101,p111,p011],colors[0])}
+function drawFloor(){let {w,h}=fitCanvas(),pal=palette(),f=snapshot();ctx.clearRect(0,0,w,h);ctx.fillStyle=getComputedStyle(document.body).getPropertyValue('--plot').trim();ctx.fillRect(0,0,w,h);hotspots=[];
+ if(layout2d){let gap=13,width=(w-36-3*gap)/4,top=h*.33;NAMES.forEach((n,i)=>{let x=18+i*(width+gap),w2=Math.max(10,width),color=COLORS[i];ctx.fillStyle=pal.soft;ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(x,top,w2,94,9);ctx.fill();ctx.stroke();ctx.font='bold '+(w<450?'10':'13')+'px system-ui';ctx.fillStyle=pal.ink;ctx.textAlign='center';ctx.fillText(n,x+w2/2,top+23);ctx.font='12px system-ui';ctx.fillText('Q '+f.queues[i],x+w2/2,top+48);ctx.fillText('● '+f.busy[i]+'/'+cfg.workers[i],x+w2/2,top+69);hotspots.push({x:x+w2/2,y:top+46,r:Math.max(25,w2/2),i})});return}
+ // Base virtual floor
+ let poly=[[-6.4,-3.2,0],[6.5,-3.2,0],[6.5,3.4,0],[-6.4,3.4,0]].map(q=>project(...q,w,h));polygon(poly,pal.floor,pal.grid);
+ ctx.strokeStyle=pal.grid;ctx.lineWidth=.7;for(let a=-6;a<=6;a++){let p=project(a,-3,0,w,h),q=project(a,3,0,w,h);ctx.beginPath();ctx.moveTo(...p);ctx.lineTo(...q);ctx.stroke()}for(let a=-3;a<=3;a++){let p=project(-6,a,0,w,h),q=project(6,a,0,w,h);ctx.beginPath();ctx.moveTo(...p);ctx.lineTo(...q);ctx.stroke()}
+ let stations=NAMES.map((n,i)=>({i,x:(i-1.5)*2.88,y:(i%2===0?-.12:.38),depth:(i-1.5)*Math.sin(orbit.yaw)+(i%2===0?-.12:.38)*Math.cos(orbit.yaw)}));stations.sort((a,b)=>b.depth-a.depth);
+ stations.forEach(({i,x,y})=>{let q=f.queues[i],busy=f.busy[i],down=f.down[i],color=COLORS[i];cuboid(x-.95,y-.72,0,1.9,1.48,.15,[pal.soft,pal.shade,pal.floor],w,h);
+  cuboid(x-.76,y-.40,.15,1.48,.86,.56,[color,pal.shade,pal.floor],w,h);let center=project(x,y,.82,w,h);hotspots.push({x:center[0],y:center[1],r:Math.max(27,48*orbit.zoom),i});
+  // Worker markers, scaled to available stations
+  for(let j=0;j<cfg.workers[i];j++){let p=project(x-.5+j*.35,y+.57,.30,w,h);ctx.beginPath();ctx.arc(p[0],p[1],Math.max(3,5*orbit.zoom),0,Math.PI*2);ctx.fillStyle=j<busy?'#49dfb8':j<busy+down?'#ff7c8f':'#90b7d7';ctx.fill()}
+  // Virtual queue blocks (capped visually, number preserves true queue)
+  for(let k=0;k<Math.min(6,q);k++){let p=project(x-.64+(k%3)*.43,y-1.09-Math.floor(k/3)*.28,.13,w,h);ctx.fillStyle='#f7b869';ctx.fillRect(p[0]-4,p[1]-4,8,8)}
+  ctx.font='bold '+Math.max(10,12*orbit.zoom)+'px system-ui';ctx.textAlign='center';ctx.fillStyle=pal.ink;ctx.fillText(NAMES[i],center[0],center[1]-19*orbit.zoom);
+  ctx.font='bold 11px system-ui';ctx.fillText('Q '+q+'  ·  '+busy+'/'+cfg.workers[i],center[0],center[1]+30*orbit.zoom);
+  if(i===selectedStation){ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();ctx.arc(center[0],center[1],39*orbit.zoom,0,Math.PI*2);ctx.stroke()}
+ });
+ // Flow arrows are conceptual, and are deliberately not modelled as conveyor travel time.
+ let points=[0,1,2,3].map(i=>project((i-1.5)*2.88,0,.15,w,h));ctx.lineWidth=2;ctx.strokeStyle=pal.ink;ctx.setLineDash([5,5]);for(let k=0;k<3;k++){ctx.beginPath();ctx.moveTo(points[k][0],points[k][1]);ctx.lineTo(points[k+1][0],points[k+1][1]);ctx.stroke()}ctx.setLineDash([]);
+}
+let gesture=null;
+canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);gesture={x:e.clientX,y:e.clientY,ox:e.clientX,oy:e.clientY,drag:false};});
+canvas.addEventListener('pointermove',e=>{if(!gesture||layout2d)return;let dx=e.clientX-gesture.x,dy=e.clientY-gesture.y;if(Math.abs(e.clientX-gesture.ox)+Math.abs(e.clientY-gesture.oy)>6)gesture.drag=true;orbit.yaw+=dx*.007;orbit.pitch=clamp(orbit.pitch+dy*.004,.22,1.28);gesture.x=e.clientX;gesture.y=e.clientY;drawFloor()});
+canvas.addEventListener('pointerup',e=>{if(!gesture)return;if(!gesture.drag){let r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,near=hotspots.map(h=>({...h,d:Math.hypot(x-h.x,y-h.y)})).sort((a,b)=>a.d-b.d)[0];if(near&&near.d<near.r*1.35)selectStation(near.i)}gesture=null});
+canvas.addEventListener('wheel',e=>{if(layout2d)return;e.preventDefault();orbit.zoom=clamp(orbit.zoom-e.deltaY*.001,.56,1.65);drawFloor()},{passive:false});
+canvas.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){orbit.yaw+=(e.key==='ArrowLeft'?-.14:.14);e.preventDefault();drawFloor()}if(e.key==='+'||e.key==='='){orbit.zoom=clamp(orbit.zoom+.1,.56,1.65);drawFloor()}if(e.key==='-'){orbit.zoom=clamp(orbit.zoom-.1,.56,1.65);drawFloor()}});
+for(const [id,fn] of [['turnLeft',()=>orbit.yaw-=.22],['turnRight',()=>orbit.yaw+=.22],['zoomIn',()=>orbit.zoom=clamp(orbit.zoom+.12,.56,1.65)],['zoomOut',()=>orbit.zoom=clamp(orbit.zoom-.12,.56,1.65)]])$(id).onclick=()=>{fn();drawFloor()};
+$('viewToggle').onclick=()=>{layout2d=!layout2d;$('viewToggle').textContent=layout2d?'◈ 3D view':'▦ 2D view';$('viewToggle').setAttribute('aria-pressed',String(layout2d));drawFloor()};
+function setTheme(light){document.body.classList.toggle('light',light);$('themeToggle').textContent=light?'☾ Dark mode':'☀ Light mode';$('themeToggle').setAttribute('aria-pressed',String(light));try{localStorage.setItem('opssphere-theme',light?'light':'dark')}catch{}drawFloor()};
+$('themeToggle').onclick=()=>setTheme(!document.body.classList.contains('light'));
+for(const k of ['arrival','batch','variance','downtime','repair'])$(k).addEventListener('input',e=>{const val=Number(e.target.value);changeCfg(()=>cfg[k]=val)});
+$('seed').addEventListener('change',e=>{let n=Number(e.target.value);if(!Number.isSafeInteger(n)||n<1||n>99999){say('Seed must be an integer from 1 to 99999.');setInputs();return}changeCfg(()=>cfg.seed=n)});
+$('playBtn').onclick=play;$('stepBack').onclick=()=>setMinute(Math.floor(minute)-1);$('stepNext').onclick=()=>setMinute(Math.floor(minute)+1);$('replayBtn').onclick=()=>setMinute(0);$('scrub').oninput=e=>setMinute(Number(e.target.value));
+$('undoConfig').onclick=()=>{if(!confHistory.length){say('No earlier configuration to restore.');return}pause();cfg=confHistory.pop();rebuild(false);say('Restored the previous configuration. Simulation recalculated using the same random seed.')};
+$('resetAll').onclick=()=>{pause();cfg=DEFAULT();minute=0;quizAnswers={};missionDone=[false,false,false];confHistory=[];baseline={cfg:deep(DEFAULT()),summary:deep(initialBaseline.summary)};orbit={yaw:-.65,pitch:.61,zoom:1};compareVisible=true;rebuild(true);renderQuiz();renderMissions();say('All configurations, scores and time controls were reset.')};
+$('saveReference').onclick=()=>{baseline={cfg:deep(cfg),summary:deep(session.summary)};renderCompare();say('Saved the current full-shift result as reference A. Change settings to create scenario B.')};
+$('compareBtn').onclick=()=>{compareVisible=!compareVisible;renderCompare()};
+function download(name,content,type){const blob=new Blob([content],{type});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),500)}
+function csvEscape(s){let t=String(s??'');return '"'+t.replaceAll('"','""')+'"'}
+$('exportBtn').onclick=()=>{let lines=['minute,arrived,shipped,wip,queue_receive,queue_prepare,queue_quality,queue_dispatch,util_receive,util_prepare,util_quality,util_dispatch,realized_per_hour,avg_wait_min,avg_lead_min,downtime_events'];session.frames.forEach(f=>{lines.push([f.t,f.arrived,f.shipped,f.wip,...f.queues,...f.util.map(x=>fmt(x,5)),f.t?fmt(f.shipped/f.t*60,5):0,f.avgWait==null?'':fmt(f.avgWait,5),f.avgLead==null?'':fmt(f.avgLead,5),f.failures].join(','))});lines.push('');lines.push('time_min,type,station,description');session.logs.forEach(e=>lines.push([fmt(e.t,4),e.type,NAMES[e.s],csvEscape(e.detail)].join(',')));download('OpsSphere_trace.csv',lines.join('\n'),'text/csv;charset=utf-8')};
+$('exportJson').onclick=()=>download('OpsSphere_session.json',JSON.stringify({model:'Educational discrete-event simulator',configuration:cfg,reference:baseline,summary:session.summary,missions:missionDone,quiz:quizAnswers,events:session.logs},null,2),'application/json');
+$('tabEvents').onclick=()=>{$('eventTab').classList.add('active');$('assumptionTab').classList.remove('active')};$('tabAssumptions').onclick=()=>{$('eventTab').classList.remove('active');$('assumptionTab').classList.add('active')};
+function runTests(){let checks=0,fail=[];const assert=(ok,msg)=>{checks++;if(!ok)fail.push(msg)};
+ for(let seed=1;seed<=35;seed++)for(let type=0;type<5;type++){
+  const c=DEFAULT();c.seed=seed;c.arrival=type===0?10:type===1?30:type===2?55:type===3?80:110;c.batch=(seed%8)+1;c.downtime=type===0?0:8;c.variance=(seed%6)*10;c.workers=[1+(seed%2),1+((seed+1)%2),1,1];const s=simulate(c);
+  assert(s.summary.conservationErrors===0,'Conservation failure seed '+seed+' case '+type);
+  assert(s.summary.shipped<=s.summary.arrived,'Shipments exceeded arrivals');
+  assert(s.summary.arrived===s.summary.shipped+s.summary.wip,'End-of-horizon balance');
+  assert(s.summary.throughput===s.summary.shipped/8,'Throughput ratio');
+  assert(s.frames.every(f=>f.util.every(v=>v>=-1e-9&&v<=1+1e-9)),'Utilization bound');
+  assert(s.frames.every(f=>f.queues.every(q=>q>=0)),'Negative queue');
+  assert(s.frames[0].arrived<=s.frames[480].arrived,'Nonmonotonic arrivals');
+ }
+ let out=fail.length?'FAIL: '+fail.slice(0,3).join('; '):'PASS: '+checks.toLocaleString()+' assertions across 175 reproducible scenarios (conservation, nonnegative queues, utilization, capacity reporting and completion arithmetic).';
+ $('testResults').textContent=out;$('testResults').className=fail.length?'bad':'good';$('tabAssumptions').click();return {checks,fail}
+}
+$('runTests').onclick=runTests;
+// Exposes a pure verification entrypoint for instructors and local automated QA, without external services.
+window.OpsSphereTests={simulate,DEFAULT,runTests,capCeiling};
+makeEditors();session=simulate(cfg);renderWorkers();try{setTheme(localStorage.getItem('opssphere-theme')==='light')}catch{setTheme(false)}setInputs();renderAll();renderQuiz();renderMissions();
+window.addEventListener('resize',()=>drawFloor());
+</script>
+</body>
+</html>
